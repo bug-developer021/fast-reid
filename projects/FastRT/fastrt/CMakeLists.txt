@@ -1,4 +1,6 @@
 project(FastRTEngine)
+SET(TENSORRT_HOME /usr/src/app/TensorRT-8.6.1.6)
+
 
 file(GLOB_RECURSE COMMON_SRC_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/common/utils.cpp
@@ -11,8 +13,11 @@ find_package(CUDA REQUIRED)
 include_directories(/usr/local/cuda/include)
 link_directories(/usr/local/cuda/lib64)
 # tensorrt
-include_directories(/usr/include/x86_64-linux-gnu/)
-link_directories(/usr/lib/x86_64-linux-gnu/)
+# include_directories(/usr/include/x86_64-linux-gnu/)
+# link_directories(/usr/lib/x86_64-linux-gnu/)
+include_directories(${TENSORRT_HOME}/include/)
+link_directories(${TENSORRT_HOME}/lib/)
+
 
 # build engine as library
 add_library(${PROJECT_NAME} ${TARGET} ${COMMON_SRC_FILES})

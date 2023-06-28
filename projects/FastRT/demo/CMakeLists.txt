@@ -1,4 +1,7 @@
 SET(APP_PROJECT_NAME fastrt)
+SET(TENSORRT_HOME /usr/src/app/TensorRT-8.6.1.6)
+
+
 
 find_package(CUDA REQUIRED)
 # include and link dirs of cuda and tensorrt, you need adapt them if yours are different
@@ -6,11 +9,18 @@ find_package(CUDA REQUIRED)
 include_directories(/usr/local/cuda/include)
 link_directories(/usr/local/cuda/lib64)
 # tensorrt
-include_directories(/usr/include/x86_64-linux-gnu/)
-link_directories(/usr/lib/x86_64-linux-gnu/)
+# include_directories(/usr/include/x86_64-linux-gnu/)
+# link_directories(/usr/lib/x86_64-linux-gnu/)
+include_directories(${TENSORRT_HOME}/include)
+link_directories(${TENSORRT_HOME}/lib)
+
+message(STATUS "TensorRT path: ${TENSORRT_HOME}")
+
+
 
 include_directories(${SOLUTION_DIR}/include)
 add_executable(${APP_PROJECT_NAME} inference.cpp)
+
 
 # numpy
 if(USE_CNUMPY)
