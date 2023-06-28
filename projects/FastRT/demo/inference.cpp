@@ -12,21 +12,25 @@ using namespace nvinfer1;
 #endif
 
 /* Ex1. sbs_R50-ibn */
-static const std::string WEIGHTS_PATH = "../sbs_R50-ibn.wts"; 
-static const std::string ENGINE_PATH = "./sbs_R50-ibn.engine";
+static const std::string WEIGHTS_PATH = "../veriwild_bagtricks_R50-ibn.wts";
+static const std::string ENGINE_PATH = "./veriwild_bagtricks_R50-ibn.engine";
+
+// static const std::string WEIGHTS_PATH = "../veri_sbs_R50-ibn.wts";
+// static const std::string ENGINE_PATH = "./veri_sbs_R50-ibn.engine";
 
 static const int MAX_BATCH_SIZE = 4;
-static const int INPUT_H = 384;
-static const int INPUT_W = 128;
+static const int INPUT_H = 256;
+static const int INPUT_W = 256;
 static const int OUTPUT_SIZE = 2048;
 static const int DEVICE_ID = 0;
 
 static const FastreidBackboneType BACKBONE = FastreidBackboneType::r50; 
 static const FastreidHeadType HEAD = FastreidHeadType::EmbeddingHead;
-static const FastreidPoolingType HEAD_POOLING = FastreidPoolingType::gempoolP;
+// static const FastreidPoolingType HEAD_POOLING = FastreidPoolingType::gempoolP;
+static const FastreidPoolingType HEAD_POOLING = FastreidPoolingType::gempool;
 static const int LAST_STRIDE = 1;
 static const bool WITH_IBNA = true; 
-static const bool WITH_NL = true;
+static const bool WITH_NL = false;
 static const int EMBEDDING_DIM = 0; 
 
 
