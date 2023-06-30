@@ -93,15 +93,30 @@ So we don't use any parsers here.
    then go to [step 5](#step5)
    
 10. (Optional) Build tensorrt model with python interface, then you can use FastRT model in python.
+    - 首先需要clone pybind11到 FastRT/third_party并编译(或者直接通过pip install pybind11)
+      ```
+      cd FastRT/third_party
+      git clone https://github.com/pybind/pybind11 
+      cd pybind11
+      mkdir build && \
+      cd build && \
+      cmake .. && \
+      make -j$(nproc) && \
+      make install && \
+      cd ../.. && \
+      rm -rf pybind11
+      ```
 
-    ``` 
-    mkdir build
-    cd build
-    cmake -DBUILD_FASTRT_ENGINE=ON \
-        -DBUILD_DEMO=ON \
-        -DBUILD_PYTHON_INTERFACE=ON ..
-    make
-    ```
+    - 接着编译reid python bindings
+      ```
+
+      mkdir build
+      cd build
+      cmake -DBUILD_FASTRT_ENGINE=ON \
+         -DBUILD_DEMO=ON \
+         -DBUILD_PYTHON_INTERFACE=ON ..
+      make
+      ```
     
     You should get a so file `FastRT/build/pybind_interface/ReID.cpython-37m-x86_64-linux-gnu.so`. 
    

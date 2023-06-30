@@ -1,7 +1,6 @@
 import random
 import numpy as np
 import cv2
-import fs
 import argparse
 import io
 import sys
@@ -60,6 +59,10 @@ def map(wrapper):
 
 
 if __name__ == '__main__':
+	arg_parser = argparse.ArgumentParser(description="ReID")
+	arg_parser.add_argument("--serialize-name", type=str, default="../build/sbs_R50-ibn.engine", help="model serialize name")
+	
+	args = arg_parser.parse_args()
 	infer = ReID(GPU_ID)
-	infer.build("../build/sbs_R50-ibn.engine")
+	infer.build(args.serialize_name)
 	map(infer)

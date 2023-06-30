@@ -1,4 +1,5 @@
 SET(APP_PROJECT_NAME ReID)
+SET(TENSORRT_HOME /usr/src/app/TensorRT-8.6.1.6)
 
 # pybind
 find_package(pybind11)
@@ -9,8 +10,11 @@ find_package(CUDA REQUIRED)
 include_directories(/usr/local/cuda/include)
 link_directories(/usr/local/cuda/lib64)
 # tensorrt
-include_directories(/usr/include/x86_64-linux-gnu/)
-link_directories(/usr/lib/x86_64-linux-gnu/)
+# include_directories(/usr/include/x86_64-linux-gnu/)
+# link_directories(/usr/lib/x86_64-linux-gnu/)
+
+include_directories(${TENSORRT_HOME}/include)
+link_directories(${TENSORRT_HOME}/lib)
 
 include_directories(${SOLUTION_DIR}/include)
 
